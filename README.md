@@ -13,6 +13,15 @@ something that can get the job done in-line to my pool. I've got some other
 [Hubitat](https://github.com/bdwilson/hubitat) contributions if you're
 interested. 
 
+* Acurite is crummy because they discontinued a perfectly good internet hub device with
+little notice, and forced people to buy a new device that had less
+functionality that the prevіous hub. Not only this, they took away the ability
+to get *your* local weather data off of the hub itself. So the only thing left
+that I have of Acurite is their 5in1, and when that dies, I'm abandoning them.
+Today I'm pulling data off the 5in1 via
+[SDR](https://github.com/bdwilson/acurite) and getting [pressure data via a
+bmp280](https://github.com/bdwilson/acurite/blob/master/Pressure.md). 
+
 # Requirements
 1. [Inline, Waterproof pool temperature sensor](https://www.amazon.com/gp/product/B07QL9PLY9/). I used this exact
 device, thus my arduino code won't change much if you buy this model. You
@@ -53,7 +62,7 @@ in /usr/share/weewx/user on my machine. make sure to add the PoolService
 entries in weewx and enable pool.py in the data_service line - this may be
 commented out, or you may be using other services - it really depends. For me,
 I have two extra data services so mine looks like this as I have a
-[bmp280a that I am using here](https://github.com/bdwilson/acurite) for
+[bmp280a that I am using here](https://github.com/bdwilson/acurite/blob/master/Pressure.md) for
 pressure:
 <pre>
         data_services = user.bmp280a.bmp, user.pool.PoolService
