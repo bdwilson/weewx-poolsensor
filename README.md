@@ -73,6 +73,7 @@ heater, make sure to install this before your water is heated, not after) and
 install your Wemos D1 Mini into a water proof box - I just added it into my
 [pool controller](https://github.com/bdwilson/hubitat/tree/master/Arduino-Pool)
 box and shared the power with those relays.
+<img src="https://bdwilson.github.io/images/IMG_3823.JPG" width=400px>
 
 # Questions/Bugs/Contact Info
 -----------------
