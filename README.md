@@ -25,7 +25,7 @@ bmp280](https://github.com/bdwilson/acurite/blob/master/Pressure.md).
 # Requirements
 1. [Inline, Waterproof pool temperature sensor](https://www.amazon.com/gp/product/B07QL9PLY9/). I used this exact
 device, thus my arduino code won't change much if you buy this model. You
-should measure the resistance of your 10k resistor as well as this at 20
+should measure the resistance of your 10k resistor as well as this at 25
 celsius to better tweak your values. 
 2. [Wemos D1
 Mini](https://www.amazon.com/HiLetgo-Development-ESP8285-Wireless-Internet/dp/B07BK435ZW)
