@@ -42,7 +42,7 @@ work for serving temperature to any device that can make a web request, but the
 # Setting it up
 
 * Wire up your Wemos D1 Mini this way (yes, this isn't a Wemos D1 mini, but the
-pins are the same - A0, 3v3, Ground and pins on your thermistor. Make sure your resistor added as well.
+pins are the same - A0, 3v3, Ground and pins on your thermistor). Make sure your resistor added as well.
 Since these connections are so simple, I didn't need a breadboard and just
 soldered them to the board. 
 <img src="https://bdwilson.github.io/images/NodeMCU_Thermistor_Interfacing_Diagram.png" width=400px>
