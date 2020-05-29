@@ -9,8 +9,9 @@ to get my temps into devices in Hubitat, and my [home weather
 station](https://github.com/bdwilson/acurite) project. I was using an acurite
 soil/water sensor for my pool, but after 2 seasons, it was toast - so instead
 of investing more money in a crummy company like Acurite, I figured I'd build
-something that can get the job done in-line to my pool 
-
+something that can get the job done in-line to my pool. I've got some other
+[Hubitat](https://github.com/bdwilson/hubitat) contributions if you're
+interested. 
 
 # Requirements
 1. [Inline, Waterproof pool temperature sensor](https://www.amazon.com/gp/product/B07QL9PLY9/). I used this exact
@@ -64,6 +65,6 @@ install your Wemos D1 Mini into a water proof box - I just added it into my
 [pool controller](https://github.com/bdwilson/hubitat/tree/master/Arduino-Pool)
 box and shared the power with those relays.
 
-# Questions/Bugs/Contactd Info
+# Questions/Bugs/Contact Info
 -----------------
 Bug me on Twitter at [@brianwilson](http://twitter.com/brianwilson) or email me [here](http://cronological.com/comment.php?ref=bubba).
