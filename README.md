@@ -45,7 +45,7 @@ work for serving temperature to any device that can make a web request, but the
 pins are the same - A0, 3v3, Ground and pins on your thermistor). Make sure your resistor added as well.
 Since these connections are so simple, I didn't need a breadboard and just
 soldered them to the board. 
-<img src="https://bdwilson.github.io/images/NodeMCU_Thermistor_Interfacing_Diagram.png" width=400px>
+<img src="https://bdwilson.github.io/images/c1.png" width=400px>
 
 * Connect to arduino via USB and load
 [arduino_pool_sensor.ino](arduino_pool_sensor.ino). Adjust wifi info and any
