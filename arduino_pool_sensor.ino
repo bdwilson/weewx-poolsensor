@@ -31,24 +31,39 @@
 const char* ssid = "SSID";
 const char* pass = "PASSWORD";
 const char* hostname = "PoolTemp"; // sent via DHCP request
+float offset = 0;  // optional - you could also handle on the weewx side.
 
-WiFiServer server(80);
+ESP8266WebServer server(80);
  
 void setup(void) {
   Serial.begin(115200);
-  //analogReference(EXTERNAL);  // Wemos D1 doesn't have a analog ref
   delay(10);
-  WiFi.hostname(hostname);
+  Serial.println("");
+  Serial.print("Connecting to Wifi");
+  //WiFi.hostname(hostname);
+  wifi_station_set_hostname(hostname);
+  WiFi.softAPdisconnect (true);
   WiFi.begin(ssid,pass);
   while(WiFi.status() != WL_CONNECTED) {
      delay(500);
+     Serial.print(".");
   }
-  Serial.println("Connected to WiFi");
+  Serial.println(".");
+  Serial.print("Connected to SSID: ");
+  Serial.println(ssid);
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
-  
-  server.begin(); // start webserver
+  Serial.print("Hostname: ");
+  Serial.println(hostname);
 
+  //if (MDNS.begin(hostname)) {
+  //  Serial.println("MDNS responder started.");
+ // }
+  
+  server.on("/temp", handleTemp);
+  server.onNotFound(handleNotFound);
+  server.begin();
+  
   ArduinoOTA.onStart([]() {  // handle OTA requests
     String type;
     if (ArduinoOTA.getCommand() == U_FLASH)
@@ -94,9 +109,14 @@ float ntc () {
   }
   average /= NUMSAMPLES;
  
+  //Serial.print("Average analog reading "); 
+  //Serial.println(average);
+  
   // convert the value to resistance  1023 = Arduino adcMax analog to digital convert value returned by analogRead.
   average = 1023 / average - 1;
   average = SERIESRESISTOR / average;
+  //Serial.print("Thermistor resistance "); 
+  //Serial.println(average);
   
   float steinhart;
   steinhart = average / THERMISTORNOMINAL;     // (R/Ro)
@@ -105,36 +125,37 @@ float ntc () {
   steinhart += 1.0 / (TEMPERATURENOMINAL + 273.15); // + (1/To)
   steinhart = 1.0 / steinhart;                 // Invert
   steinhart -= 273.15;                         // convert to C
-  // comment out the below line for Celsius
-  steinhart = steinhart*1.8 + 32.0;            // Convert to Fahrenheit
+  //steinhart = (steinhart * 9.0)/ 5.0 + 32.0;                  // Convert to Fahrenheit
+  steinhart = steinhart*1.8 + 32.0;           
     
   return steinhart;
 }
- 
-void loop(void) {
+
+void handleTemp() {
   char oneDigit[5]; 
-  
-  webota.handle();
-  ArduinoOTA.handle();
-
-  WiFiClient client = server.available();
-  if (!client) {
-    return;
-  }
-
-  // Wait until the client sends some data
-  while(!client.available()){
-    delay(1);
-  }
-
   float sensorValue = ntc();
+  
+  sensorValue += offset;
+  
+  String response = "{\"Temperature\":\"";
+  
   dtostrf(sensorValue, 2, 1, oneDigit); // convert to 1 decimal place resolution
+
+  response += oneDigit;
+  response += "\"}";
   Serial.print("Temperature "); 
   Serial.print(oneDigit);
-  Serial.println(" *F"); // change to C if you don't convert to F.
-  client.print("{\"Temperature\":\"");
-  client.print(oneDigit);
-  client.print("\"}");
+  Serial.println(" *F");
+  server.send(200, "application/json", response);
+}
 
-  delay(1);
+// This method is called when an undefined url is specified by the caller
+void handleNotFound() {
+  server.send(400, "application/json", "{\"message\":\"Invalid request\"}");
+}
+ 
+void loop(void) {
+  //webota.handle();
+  ArduinoOTA.handle();
+  server.handleClient();
 }
