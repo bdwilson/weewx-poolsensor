@@ -48,7 +48,7 @@ Since these connections are so simple, I didn't need a breadboard and just
 soldered them to the board. I know the image below shows D0, but I had to use A0 instead. 
 <img src="https://bdwilson.github.io/images/c1.png" width=400px>
 
-* If you want to use ST_Anything (a hubitat thing and NOT Weewx to get the temp from your temp sensor), you can use [this code](https://raw.githubusercontent.com/bdwilson/weewx-poolsensor/master/ST_Anything_TempSensor.ino).  Otherwise, if you want to connect this to Weewx, skip this step.
+* If you want to use ST_Anything (a hubitat thing and NOT Weewx to get the temp from your temp sensor), you can use [this code](https://raw.githubusercontent.com/bdwilson/weewx-poolsensor/master/ST_Anything_TempSensor.ino).  Otherwise, if you want to connect this to Weewx, skip this step. This file has also been configured for [these](https://www.amazon.com/gp/product/B00M1TEFTU/) thermistors, not the one above. You will need to adjust values as needed if you want to use Hubitat and not Weewx.
 
 * Connect to arduino via USB and load
 [arduino_pool_sensor.ino](arduino_pool_sensor.ino). Adjust wifi info and any
