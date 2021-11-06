@@ -38,6 +38,7 @@ reason the native Arduino OTA method isn't working - it's finicky).
 4. [Weewx](http://www.weewx.com/). Not a requirement as the above sensor will
 work for serving temperature to any device that can make a web request, but the
 [PoolService](pool.py) module will enable this natively in Weewx.
+5. [Case](https://www.thingiverse.com/thing:2567855). Print this at 104% because of D1 mini tolerances. 
 
 # Setting it up
 
