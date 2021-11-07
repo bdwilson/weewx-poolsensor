@@ -136,7 +136,8 @@ void setup()
 //        - int BCOEFF - OPTIONAL - The beta coefficient of the thermistor (usually 3000-4000). Tweak this number to calibrate.
 //        - int tempNOM - OPTIONAL - The nominal temperature of the thermistor @10k (usually 25C, 77F).
 //        - int unit - OPTIONAL - Use the letter F for Farhenheit, C for Celsius
-    static st::PS_10kThermistor sensor1(F("temperature1"), 180, 5, PIN_THERMISTOR, 5000, 4700, 3950, 25, 'F');
+//    static st::PS_10kThermistor sensor1(F("temperature1"), 180, 5, PIN_THERMISTOR, 5000, 4700, 3950, 25, 'F');
+  static st::PS_10kThermistor sensor1(F("temperature1"), 180, 5, PIN_THERMISTOR, 9300, 8850, 3950, 25, 'F');  // 10k amazon thermistor https://www.amazon.com/gp/product/B00M1TEFTU/
   
   //Interrupt Sensors 
 
